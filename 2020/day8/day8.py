@@ -24,33 +24,6 @@ def get_accumulator_count(data):
             index_counter += int(instruction[1])
 
 
-def get_accumulator_count_at_last_index(data):
-    max_index = 630
-    time_to_stop = False
-    index_counter = 0
-    accumulator = 0
-    executed_instruction = []
-    while not time_to_stop:
-        instruction = data[index_counter]
-        executed_instruction.append(index_counter)
-        move_to_make = instruction[0]
-        if move_to_make == "nop":
-            index_counter += 1
-            if index_counter >= max_index:
-                return index_counter, accumulator
-        if move_to_make == "acc":
-            accumulator += int(instruction[1])
-            index_counter += 1
-            if index_counter >= max_index:
-                return index_counter, accumulator
-        if move_to_make == "jmp":
-            index_counter += int(instruction[1])
-            if index_counter >= max_index:
-                return index_counter, accumulator
-        if index_counter in executed_instruction:
-            time_to_stop = True
-
-
 print(get_accumulator_count(data))
 
 # Part 2
