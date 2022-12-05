@@ -36,5 +36,6 @@ def solve_part_2(elf_pair):
 assert sum([solve_part_1(x) for x in example]) == 2
 assert sum([solve_part_2(x) for x in example]) == 4
 
-print(f"Solution Part 1: {sum([solve_part_1(x) for x in data])}")
-print(f"Solution Part 2: {sum([solve_part_2(x) for x in data])}")
+if __name__ == "__main__":
+    print(f"Solution Part 1: {sum([solve_part_1(x) for x in data])}")
+    print(f"Solution Part 2: {sum([solve_part_2(x) for x in data])}")

@@ -52,4 +52,52 @@ for k in list(container.keys()):
     answer_part_1.append(last_letter)
 
 
-print(answer_part_1)
+## Part 2
+col1 = ["s", "l", "w"]
+col2 = ["j", "t", "n", "q"]
+col3 = ["s", "c", "h", "f", "j"]
+col4 = ["t", "r", "m", "w", "n", "g", "b"]
+col5 = ["t", "r", "l", "s", "d", "h", "q", "b"]
+col6 = ["m", "j", "b", "v", "f", "h", "r", "l"]
+col7 = ["d", "w", "r", "n", "j", "m"]
+col8 = ["b", "z", "t", "f", "h", "n", "d", "j"]
+col9 = ["h", "l", "q", "n", "b", "f", "t"]
+
+
+container = {
+    1: col1,
+    2: col2,
+    3: col3,
+    4: col4,
+    5: col5,
+    6: col6,
+    7: col7,
+    8: col8,
+    9: col9,
+}
+
+
+for direction in directions:
+    move_, from_, to_ = parse_directions(direction)
+    crates = []
+    while move_ > 0:
+        crate = container[from_].pop()
+        crates.append(crate)
+        move_ -= 1
+    crates.reverse()
+    for c in crates:
+        container[to_].append(c)
+
+
+answer_part_2 = []
+
+for k in list(container.keys()):
+    last_letter = container[k].pop().upper()
+    answer_part_2.append(last_letter)
+
+
+if __name__ == "__main__":
+    print(
+        f"Part 1 Answer: {''.join(answer_part_1)}\n"
+        f"Part 2 Answer: {''.join(answer_part_2)}\n"
+    )
