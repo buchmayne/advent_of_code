@@ -12,7 +12,7 @@ validate_part_1_input = [
 
 validate_part_1_answer = 8
 
-validatee_part_2_input = [
+validate_part_2_input = [
     "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green",
     "Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue",
     "Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red",
@@ -47,8 +47,30 @@ def solve_part_1(input: str) -> int:
 
 assert sum([solve_part_1(x) for x in validate_part_1_input]) == validate_part_1_answer
 
+def solve_part_2(input: str) -> int:
+    game_id, games_record = input.split(": ")
+    games = [game.split(",") for game in games_record.split("; ")]
+    
+    blue_max, red_max, green_max = (0, 0, 0)
+    
+    for round in games:
+        for draw in round:
+            if 'blue' in draw:
+                if int(draw.replace(" blue", "")) > blue_max:
+                    blue_max = int(draw.replace(" blue", ""))
+            elif 'red' in draw:
+                if int(draw.replace(" red", "")) > red_max:
+                    red_max = int(draw.replace(" red", ""))
+            elif 'green' in draw:
+                if int(draw.replace(" green", "")) > green_max:
+                    green_max = int(draw.replace(" green", ""))
+    
+    return blue_max * red_max * green_max
+
+assert sum([solve_part_2(x) for x in validate_part_2_input]) == validate_part_2_answer
+
 if __name__ == "__main__":
     print(
         f"Part 1 Answer: {sum([solve_part_1(x) for x in data])}\n"
-        f"Part 2 Answer: {None}"
+        f"Part 2 Answer: {sum([solve_part_2(x) for x in data])}"
     )
